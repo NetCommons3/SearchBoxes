@@ -8,4 +8,4 @@ SearchBoxes Plugin for NetCommons
 
 | dependencies  | status |
 | ------------- | ------ |
-| composer.json | [![Dependency Status](https://www.versioneye.com/user/projects/55531fa006c31830550002f4/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55531fa006c31830550002f4) |
+| composer.json | [![Dependency Status](https://www.versioneye.com/user/projects/555c5425634daa30fb000768/badge.svg?style=flat)](https://www.versioneye.com/user/projects/555c5425634daa30fb000768) |

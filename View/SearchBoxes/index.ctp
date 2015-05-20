@@ -17,11 +17,11 @@
 		<td><?php echo h($searchBox['SearchBox']['block_key']); ?>&nbsp;</td>
 		<td><?php echo h($searchBox['SearchBox']['is_advanced']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($searchBox['TrackableCreator']['id'], array('controller' => 'users', 'action' => 'view', $searchBox['TrackableCreator']['id'])); ?>
+			<?php echo $this->Html->link($searchBox['TrackableCreator']['id'], array('plugin' => 'users', 'controller' => 'users', 'action' => 'view', $searchBox['TrackableCreator']['id'])); ?>
 		</td>
 		<td><?php echo h($searchBox['SearchBox']['created']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($searchBox['TrackableUpdater']['id'], array('controller' => 'users', 'action' => 'view', $searchBox['TrackableUpdater']['id'])); ?>
+			<?php echo $this->Html->link($searchBox['TrackableUpdater']['id'], array('plugin' => 'users', 'controller' => 'users', 'action' => 'view', $searchBox['TrackableUpdater']['id'])); ?>
 		</td>
 		<td><?php echo h($searchBox['SearchBox']['modified']); ?>&nbsp;</td>
 		<td class="actions">
@@ -50,8 +50,8 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Search Box'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Trackable Creator'), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Users'), array('plugin' => 'users', 'controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Trackable Creator'), array('plugin' => 'users', 'controller' => 'users', 'action' => 'add')); ?> </li>
 		<li><?php echo $this->Html->link(__('List Search Box Target Plugins'), array('controller' => 'search_box_target_plugins', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Search Box Target Plugin'), array('controller' => 'search_box_target_plugins', 'action' => 'add')); ?> </li>
 	</ul>
