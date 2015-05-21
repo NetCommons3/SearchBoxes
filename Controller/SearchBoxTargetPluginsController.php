@@ -112,4 +112,5 @@ class SearchBoxTargetPluginsController extends AppController {
 			$this->Session->setFlash(__('The search box target plugin could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-	}}
+	}
+}
