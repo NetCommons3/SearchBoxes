@@ -40,6 +40,7 @@
         "netcommons/roles":             "@dev",
         "netcommons/rooms":             "@dev",
         "netcommons/search":            "@dev",
+        "netcommons/topics":            "@dev",
         "netcommons/users":             "@dev"
     },
     "config": {
