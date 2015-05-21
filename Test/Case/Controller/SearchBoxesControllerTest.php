@@ -7,7 +7,8 @@
  * @license http://www.netcommons.org/license.txt NetCommons License
  */
 
-App::uses('SearchBoxesController', 'Controller');
+App::uses('SearchBoxesAppControllerTest', 'SearchBoxes.Test/Case/Controller');
+App::uses('SearchBoxesController', 'SearchBoxes.Controller');
 
 /**
  * Summary for SearchBoxesController Test Case

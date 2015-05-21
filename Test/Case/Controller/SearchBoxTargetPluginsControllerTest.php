@@ -7,40 +7,13 @@
  * @license http://www.netcommons.org/license.txt NetCommons License
  */
 
-App::uses('SearchBoxTargetPluginsController', 'Controller');
+App::uses('SearchBoxesAppControllerTest', 'SearchBoxes.Test/Case/Controller');
+App::uses('SearchBoxTargetPluginsController', 'SearchBoxes.Controller');
 
 /**
  * Summary for SearchBoxTargetPluginsController Test Case
  */
-class SearchBoxTargetPluginsControllerTest extends ControllerTestCase {
-
-/**
- * Fixtures
- *
- * @var array
- */
-	public $fixtures = array(
-		'app.search_box_target_plugin',
-		'app.search_box',
-		'app.user',
-		'app.role',
-		'app.group',
-		'app.room',
-		'app.space',
-		'app.box',
-		'app.block',
-		'app.page',
-		'app.language',
-		'app.groups_language',
-		'app.groups_user',
-		'app.user_attribute',
-		'app.user_attributes_user',
-		'app.user_select_attribute',
-		'app.user_select_attributes_user',
-		'app.site_setting',
-		'app.frame',
-		'app.plugin'
-	);
+class SearchBoxTargetPluginsControllerTest extends SearchBoxesAppControllerTest {
 
 /**
  * testIndex method
