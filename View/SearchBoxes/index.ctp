@@ -3,7 +3,7 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('block_key'); ?></th>
+			<th><?php echo $this->Paginator->sort('frame_key'); ?></th>
 			<th><?php echo $this->Paginator->sort('is_advanced'); ?></th>
 			<th><?php echo $this->Paginator->sort('created_user'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
@@ -14,7 +14,7 @@
 	<?php foreach ($searchBoxes as $searchBox): ?>
 	<tr>
 		<td><?php echo h($searchBox['SearchBox']['id']); ?>&nbsp;</td>
-		<td><?php echo h($searchBox['SearchBox']['block_key']); ?>&nbsp;</td>
+		<td><?php echo h($searchBox['SearchBox']['frame_key']); ?>&nbsp;</td>
 		<td><?php echo h($searchBox['SearchBox']['is_advanced']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($searchBox['TrackableCreator']['id'], array('plugin' => 'users', 'controller' => 'users', 'action' => 'view', $searchBox['TrackableCreator']['id'])); ?>

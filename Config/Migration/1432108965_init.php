@@ -33,7 +33,7 @@ class Init extends CakeMigration {
 				),
 				'search_boxes' => array(
 					'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'key' => 'primary'),
-					'block_key' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+					'frame_key' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 					'is_advanced' => array('type' => 'boolean', 'null' => false, 'default' => null, 'comment' => '0: Basic search, 1: Advanced search'),
 					'created_user' => array('type' => 'integer', 'null' => false, 'default' => null),
 					'created' => array('type' => 'datetime', 'null' => false, 'default' => null),
@@ -85,7 +85,7 @@ class Init extends CakeMigration {
 
 		'PluginsRoom' => array(
 			array(
-				'room_id' => '1',
+				'room_id' => 1,
 				'plugin_key' => 'search-boxes'
 			),
 		),

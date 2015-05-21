@@ -29,7 +29,7 @@ class SearchBox extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'block_key' => array(
+		'frame_key' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
 				//'message' => 'Your custom message here',

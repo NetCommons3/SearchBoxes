@@ -12,35 +12,7 @@ App::uses('SearchBoxesController', 'Controller');
 /**
  * Summary for SearchBoxesController Test Case
  */
-class SearchBoxesControllerTest extends ControllerTestCase {
-
-/**
- * Fixtures
- *
- * @var array
- */
-	public $fixtures = array(
-		'app.search_box',
-		'app.user',
-		'app.role',
-		'app.group',
-		'app.room',
-		'app.space',
-		'app.box',
-		'app.block',
-		'app.page',
-		'app.language',
-		'app.groups_language',
-		'app.groups_user',
-		'app.user_attribute',
-		'app.user_attributes_user',
-		'app.user_select_attribute',
-		'app.user_select_attributes_user',
-		'app.search_box_target_plugin',
-		'app.site_setting',
-		'app.frame',
-		'app.plugin'
-	);
+class SearchBoxesControllerTest extends SearchBoxesAppControllerTest {
 
 /**
  * testIndex method

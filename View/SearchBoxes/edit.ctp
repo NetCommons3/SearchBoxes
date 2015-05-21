@@ -4,7 +4,7 @@
 		<legend><?php echo __('Edit Search Box'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('block_key');
+		echo $this->Form->input('frame_key');
 		echo $this->Form->input('is_advanced');
 		echo $this->Form->input('created_user');
 		echo $this->Form->input('modified_user');

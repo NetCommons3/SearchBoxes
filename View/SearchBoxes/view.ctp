@@ -6,9 +6,9 @@
 			<?php echo h($searchBox['SearchBox']['id']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Block Key'); ?></dt>
+		<dt><?php echo __('Frame Key'); ?></dt>
 		<dd>
-			<?php echo h($searchBox['SearchBox']['block_key']); ?>
+			<?php echo h($searchBox['SearchBox']['frame_key']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Is Advanced'); ?></dt>
