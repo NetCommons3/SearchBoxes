@@ -17,13 +17,6 @@ App::uses('AppModel', 'Model');
 class SearchBox extends AppModel {
 
 /**
- * Use database config
- *
- * @var string
- */
-	public $useDbConfig = 'master';
-
-/**
  * Validation rules
  *
  * @var array
@@ -74,13 +67,28 @@ class SearchBox extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
+ * belongsTo associations
+ *
+ * @var array
+ */
+	public $belongsTo = array(
+		'Frame' => array(
+			'className' => 'Frames.Frame',
+			'foreignKey' => false,
+			'conditions' => array('SearchBox.frame_key = Frame.key'),
+			'fields' => '',
+			'order' => ''
+		),
+	);
+
+/**
  * hasMany associations
  *
  * @var array
  */
 	public $hasMany = array(
 		'SearchBoxTargetPlugin' => array(
-			'className' => 'SearchBoxTargetPlugin',
+			'className' => 'SearchBoxes.SearchBoxTargetPlugin',
 			'foreignKey' => 'search_box_id',
 			'dependent' => false,
 			'conditions' => '',

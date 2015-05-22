@@ -16,28 +16,43 @@
 			<?php echo h($searchBox['SearchBox']['is_advanced']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Trackable Creator'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($searchBox['TrackableCreator']['id'], array('controller' => 'users', 'action' => 'view', $searchBox['TrackableCreator']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($searchBox['SearchBox']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Trackable Updater'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($searchBox['TrackableUpdater']['id'], array('controller' => 'users', 'action' => 'view', $searchBox['TrackableUpdater']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($searchBox['SearchBox']['modified']); ?>
-			&nbsp;
-		</dd>
 	</dl>
 </div>
+<?php echo $this->Form->create('SearchBox',
+			array(
+				'type' => 'get',
+				'url' => array(
+					'plugin' => 'topics',
+					'controller' => 'topics',
+					'action' => 'index'))) ?>
+			<?php if ($searchBox['SearchBox']['is_advanced']): ?>
+			<div class="form-group">
+				<?php echo $this->Form->select('datasource',
+							array(
+								'Database/Mysql' => 'Mysql',
+								'Database/Postgres' => 'Postgresql'),
+							array(
+								'empty' => false,
+								'class' => '')) ?>
+			</div>
+			<div class="form-group">
+				<?php echo $this->Form->input('keyword',
+							array(
+								'class' => 'form-control')) ?>
+			</div>
+			<?php else: ?>
+			<div class="input-group">
+				<?php echo $this->Form->input('keyword',
+					array(
+						'label' => false,
+						'class' => 'form-control')) ?>
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+				</span>
+			</div>
+			<?php endif; ?>
+<?php echo $this->Form->end() ?>
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>

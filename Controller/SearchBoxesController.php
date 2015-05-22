@@ -37,10 +37,12 @@ class SearchBoxesController extends AppController {
  * @return void
  */
 	public function view($id = null) {
-		if (!$this->SearchBox->exists($id)) {
-			throw new NotFoundException(__('Invalid search box'));
-		}
-		$options = array('conditions' => array('SearchBox.' . $this->SearchBox->primaryKey => $id));
+		/* if (!$this->SearchBox->exists($id)) { */
+		/* 	throw new NotFoundException(__('Invalid search box')); */
+		/* } */
+		/* $options = array('conditions' => array('SearchBox.' . $this->SearchBox->primaryKey => $id)); */
+		/* $this->set('searchBox', $this->SearchBox->find('first', $options)); */
+		$options = array('conditions' => array('Frame.id' => $id));
 		$this->set('searchBox', $this->SearchBox->find('first', $options));
 	}
 

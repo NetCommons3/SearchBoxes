@@ -64,6 +64,8 @@ class Init extends CakeMigration {
 				'language_id' => 1,
 				'key' => 'search_boxes',
 				'namespace' => 'netcommons/search-boxes',
+				'default_action' => 'view',
+				'default_tables' => '',
 				'name' => 'Search',
 				'type' => 1,
 			),
@@ -71,6 +73,8 @@ class Init extends CakeMigration {
 				'language_id' => 2,
 				'key' => 'search_boxes',
 				'namespace' => 'netcommons/search-boxes',
+				'default_action' => 'view',
+				'default_tables' => '',
 				'name' => '検索',
 				'type' => 1,
 			),
@@ -79,14 +83,14 @@ class Init extends CakeMigration {
 		'PluginsRole' => array(
 			array(
 				'role_key' => 'room_administrator',
-				'plugin_key' => 'search-boxes'
+				'plugin_key' => 'search_boxes'
 			),
 		),
 
 		'PluginsRoom' => array(
 			array(
 				'room_id' => 1,
-				'plugin_key' => 'search-boxes'
+				'plugin_key' => 'search_boxes'
 			),
 		),
 	);
