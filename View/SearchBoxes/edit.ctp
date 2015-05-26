@@ -5,7 +5,23 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('frame_key');
-		echo $this->Form->input('is_advanced');
+echo $this->Form->input('is_advanced', [
+	'type' => 'select',
+	'options' => [
+		__('General Search'),
+		__('Advanced Search'),
+	],
+]);
+$checked = [];
+foreach ($this->Form->request->data['SearchBoxTargetPlugin'] as $target) {
+	$checked[$target['plugin_key']] = $target['plugin_key'];
+}
+echo $this->Form->input('SearchBoxTargetPlugin.plugin_key', [
+	'type' => 'select',
+	'multiple' => 'checkbox',
+	'options' => $plugins,
+	'value' => $checked,
+]);
 		echo $this->Form->input('created_user');
 		echo $this->Form->input('modified_user');
 	?>

@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('Topic', 'Topics.Model');
 /**
  * SearchBoxes Controller
  *
@@ -20,6 +21,16 @@ class SearchBoxesController extends AppController {
 	public $components = array('Paginator');
 
 /**
+ * uses
+ *
+ * @var array
+ */
+	public $uses = array(
+		'PluginManager.Plugin',
+		'SearchBoxes.SearchBox',
+	);
+
+/**
  * index method
  *
  * @return void
@@ -32,18 +43,22 @@ class SearchBoxesController extends AppController {
 /**
  * view method
  *
- * @param string $id id
+ * @param string $frameId frameId
  * @throws NotFoundException
  * @return void
  */
-	public function view($id = null) {
+	public function view($frameId = null) {
 		/* if (!$this->SearchBox->exists($id)) { */
 		/* 	throw new NotFoundException(__('Invalid search box')); */
 		/* } */
 		/* $options = array('conditions' => array('SearchBox.' . $this->SearchBox->primaryKey => $id)); */
 		/* $this->set('searchBox', $this->SearchBox->find('first', $options)); */
-		$options = array('conditions' => array('Frame.id' => $id));
+		$options = array('conditions' => array('Frame.id' => $frameId));
 		$this->set('searchBox', $this->SearchBox->find('first', $options));
+
+		$options = array('conditions' => array('language_id' => 2, 'key' => Topic::$AVAILABLE_PLUGINS));
+		$plugins = $this->Plugin->getForOptions($options);
+		$this->set('plugins', $plugins);
 	}
 
 /**
@@ -69,39 +84,45 @@ class SearchBoxesController extends AppController {
 /**
  * edit method
  *
- * @param string $id id
+ * @param string $frameId frameId
  * @throws NotFoundException
  * @return void
  */
-	public function edit($id = null) {
-		if (!$this->SearchBox->exists($id)) {
-			throw new NotFoundException(__('Invalid search box'));
-		}
+	public function edit($frameId = null) {
+		/* if (!$this->SearchBox->exists($id)) { */
+		/* 	throw new NotFoundException(__('Invalid search box')); */
+		/* } */
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->SearchBox->save($this->request->data)) {
 				$this->Session->setFlash(__('The search box has been saved.'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirectByFrameId();
 			} else {
 				$this->Session->setFlash(__('The search box could not be saved. Please, try again.'));
 			}
 		} else {
-			$options = array('conditions' => array('SearchBox.' . $this->SearchBox->primaryKey => $id));
+			$options = array('conditions' => array('Frame.id' => $frameId));
+			/* $this->set('searchBox', $this->SearchBox->find('first', $options)); */
+			/* $options = array('conditions' => array('SearchBox.' . $this->SearchBox->primaryKey => $id)); */
 			$this->request->data = $this->SearchBox->find('first', $options);
+			/* $options = array('conditions' => array('language_id' => 2, 'key' => Topic::$AVAILABLE_PLUGINS)); */
+			$options = array('conditions' => array('language_id' => 2, 'key' => Topic::$AVAILABLE_PLUGINS));
+			$plugins = $this->Plugin->getForOptions($options);
+			/* var_dump($this->request->data); */
 		}
 		$trackableCreators = $this->SearchBox->TrackableCreator->find('list');
 		$trackableUpdaters = $this->SearchBox->TrackableUpdater->find('list');
-		$this->set(compact('trackableCreators', 'trackableUpdaters'));
+		$this->set(compact('plugins'));
 	}
 
 /**
  * delete method
  *
- * @param string $id id
+ * @param string $frameId frameId
  * @throws NotFoundException
  * @return void
  */
-	public function delete($id = null) {
-		$this->SearchBox->id = $id;
+	public function delete($frameId = null) {
+		$this->SearchBox->frameId = $frameId;
 		if (!$this->SearchBox->exists()) {
 			throw new NotFoundException(__('Invalid search box'));
 		}

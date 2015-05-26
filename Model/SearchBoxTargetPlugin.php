@@ -17,13 +17,6 @@ App::uses('AppModel', 'Model');
 class SearchBoxTargetPlugin extends AppModel {
 
 /**
- * Use database config
- *
- * @var string
- */
-	public $useDbConfig = 'master';
-
-/**
  * Validation rules
  *
  * @var array
@@ -79,6 +72,13 @@ class SearchBoxTargetPlugin extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
+		'Plugin' => array(
+			'className' => 'PluginManager.Plugin',
+			'foreignKey' => false,
+			'conditions' => array('SearchBoxTargetPlugin.plugin_key = Plugin.key'),
+			'fields' => '',
+			'order' => ''
+		),
 		'SearchBox' => array(
 			'className' => 'SearchBox',
 			'foreignKey' => 'search_box_id',
@@ -87,4 +87,16 @@ class SearchBoxTargetPlugin extends AppModel {
 			'order' => ''
 		)
 	);
+
+/**
+ * validate search box
+ *
+ * @param array $data received post data
+ * @return bool True on success, false on error
+ */
+	public function validateSearchBoxTargetPlugin($data) {
+		$this->set($data);
+		$this->validates();
+		return $this->validationErrors ? false : true;
+	}
 }
