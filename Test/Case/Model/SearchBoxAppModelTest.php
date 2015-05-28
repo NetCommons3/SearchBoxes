@@ -43,6 +43,8 @@ class SearchBoxAppModelTest extends YACakeTestCase {
 		/* 'plugin.topics.topic_block_setting', */
 		/* 'plugin.topics.topic_block_setting_show_plugin', */
 		/* 'plugin.topics.topic_selected_room', */
+		'plugin.search_boxes.search_box',
+		'plugin.search_boxes.search_box_target_plugin',
 		'plugin.users.user',
 		'plugin.users.user_attribute',
 		'plugin.users.user_attributes_user',
