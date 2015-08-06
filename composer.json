@@ -28,6 +28,7 @@
     "require-dev": {
         "mustangostang/spyc":           "@dev",
         "satooshi/php-coveralls":       "@dev",
+        "netcommons/announcemnts"       "@dev",
         "netcommons/auth":              "@dev",
         "netcommons/auth-general":      "@dev",
         "netcommons/boxes":             "@dev",
