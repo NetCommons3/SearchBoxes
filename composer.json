@@ -33,6 +33,7 @@
         "netcommons/auth-general":      "@dev",
         "netcommons/boxes":             "@dev",
         "netcommons/blocks":            "@dev",
+        "netcommons/comments"           "@dev",
         "netcommons/frames":            "@dev",
         "netcommons/install":           "@dev",
         "netcommons/m17n":              "@dev",
