@@ -32,17 +32,14 @@ class SearchBoxAppModelTest extends YACakeTestCase {
 		'plugin.blocks.block',
 		'plugin.boxes.box',
 		'plugin.m17n.language',
-		/* 'plugin.groups.group', */
-		/* 'plugin.groups.groups_language', */
-		/* 'plugin.groups.groups_user', */
 		'plugin.pages.page',
 		'plugin.pages.space',
 		'plugin.roles.role',
 		'plugin.rooms.room',
-		/* 'plugin.topics.topic', */
-		/* 'plugin.topics.topic_block_setting', */
-		/* 'plugin.topics.topic_block_setting_show_plugin', */
-		/* 'plugin.topics.topic_selected_room', */
+		'plugin.topics.topic',
+		'plugin.topics.topic_frame_setting',
+		'plugin.topics.topic_frame_setting_show_plugin',
+		'plugin.topics.topic_selected_room',
 		'plugin.search_boxes.search_box',
 		'plugin.search_boxes.search_box_target_plugin',
 		'plugin.users.user',

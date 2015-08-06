@@ -18,4 +18,12 @@ App::uses('AppModel', 'Model');
  */
 class SearchBoxesAppModel extends AppModel {
 
+/**
+ * use behaviors
+ *
+ * @var array
+ */
+	public $actsAs = array(
+		'NetCommons.OriginalKey',
+	);
 }

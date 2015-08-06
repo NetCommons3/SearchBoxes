@@ -2,14 +2,14 @@
 	<h2><?php echo __('Search Boxes'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('frame_key'); ?></th>
-			<th><?php echo $this->Paginator->sort('is_advanced'); ?></th>
-			<th><?php echo $this->Paginator->sort('created_user'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified_user'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+		<th><?php echo $this->Paginator->sort('id'); ?></th>
+		<th><?php echo $this->Paginator->sort('frame_key'); ?></th>
+		<th><?php echo $this->Paginator->sort('is_advanced'); ?></th>
+		<th><?php echo $this->Paginator->sort('created_user'); ?></th>
+		<th><?php echo $this->Paginator->sort('created'); ?></th>
+		<th><?php echo $this->Paginator->sort('modified_user'); ?></th>
+		<th><?php echo $this->Paginator->sort('modified'); ?></th>
+		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($searchBoxes as $searchBox): ?>
 	<tr>

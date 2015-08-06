@@ -1,0 +1,48 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"PO-Revision-Date: 2015-07-28 18:45+0000\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /var/www/app//View/Elements/SearchBoxes/edit_form.ctp:10
+#: /var/www/app//View/SearchBoxes/view.ctp:25
+msgid "Search Type"
+msgstr "検索タイプ"
+
+#: /var/www/app//View/Elements/SearchBoxes/edit_form.ctp:13
+msgid "General Search"
+msgstr "通常検索"
+
+#: /var/www/app//View/Elements/SearchBoxes/edit_form.ctp:14
+msgid "Advanced Search"
+msgstr "詳細検索"
+
+#: /var/www/app//View/Elements/SearchBoxes/edit_form.ctp:27
+#: /var/www/app//View/SearchBoxes/view.ctp:95
+msgid "Target Plugins"
+msgstr "対象プラグイン"
+
+#: /var/www/app//View/SearchBoxes/view.ctp:9;116
+msgid "Keyword"
+msgstr "キーワード"
+
+#: /var/www/app//View/SearchBoxes/view.ctp:52
+msgid "Target Room"
+msgstr "対象ルーム"
+
+msgid "Target Block"
+msgstr "対象ブロック"
+
+# 対象日時
+#: /var/www/app//View/SearchBoxes/view.ctp:71
+msgid "Target Datetime"
+msgstr "対象期間"

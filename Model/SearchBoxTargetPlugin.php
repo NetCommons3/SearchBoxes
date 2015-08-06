@@ -14,57 +14,7 @@ App::uses('AppModel', 'Model');
 /**
  * Summary for SearchBoxTargetPlugin Model
  */
-class SearchBoxTargetPlugin extends AppModel {
-
-/**
- * Validation rules
- *
- * @var array
- */
-	public $validate = array(
-		'search_box_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'plugin_key' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'created_user' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'modified_user' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+class SearchBoxTargetPlugin extends SearchBoxesAppModel {
 
 /**
  * belongsTo associations
@@ -80,7 +30,7 @@ class SearchBoxTargetPlugin extends AppModel {
 			'order' => ''
 		),
 		'SearchBox' => array(
-			'className' => 'SearchBox',
+			'className' => 'SearchBoxes.SearchBox',
 			'foreignKey' => 'search_box_id',
 			'conditions' => '',
 			'fields' => '',
@@ -89,7 +39,52 @@ class SearchBoxTargetPlugin extends AppModel {
 	);
 
 /**
- * validate search box
+ * Called during validation operations, before validation. Please note that custom
+ * validation rules can be defined in $validate.
+ *
+ * @param array $options Options passed from Model::save().
+ * @return bool True if validate operation should continue, false to abort
+ * @link http://book.cakephp.org/2.0/en/models/callback-methods.html#beforevalidate
+ * @see Model::save()
+ */
+	public function beforeValidate($options = array()) {
+		$this->validate = Hash::merge($this->validate, array(
+			'search_box_id' => array(
+				'numeric' => array(
+					'rule' => array('numeric'),
+					'message' => __d('net_commons', 'Invalid request.'),
+				),
+			),
+			'plugin_key' => array(
+				'notEmpty' => array(
+					'rule' => array('notEmpty'),
+					'message' => __d('net_commons', 'Invalid request.'),
+				),
+				/* 'inList' => array( */
+				/* 	'rule' => array('inList', Topic::$availablePlugins), */
+				/* 	'message' => __d('net_commons', 'Invalid request.'), */
+				/* 	'allowEmpty' => true, */
+				/* ) */
+			),
+			'created_user' => array(
+				'numeric' => array(
+					'rule' => array('numeric'),
+					'message' => __d('net_commons', 'Invalid request.'),
+				),
+			),
+			'modified_user' => array(
+				'numeric' => array(
+					'rule' => array('numeric'),
+					'message' => __d('net_commons', 'Invalid request.'),
+				),
+			),
+		));
+
+		return parent::beforeValidate($options);
+	}
+
+/**
+ * validate search box target plugin
  *
  * @param array $data received post data
  * @return bool True on success, false on error

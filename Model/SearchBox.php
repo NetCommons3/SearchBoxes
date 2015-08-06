@@ -9,62 +9,13 @@
  * @license http://www.netcommons.org/license.txt NetCommons License
  */
 
-App::uses('AppModel', 'Model');
+App::uses('SearchBoxesAppModel', 'SearchBoxes.Model');
+/* App::uses('AppModel', 'Model'); */
 
 /**
  * Summary for SearchBox Model
  */
-class SearchBox extends AppModel {
-
-/**
- * Validation rules
- *
- * @var array
- */
-	public $validate = array(
-		'frame_key' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'is_advanced' => array(
-			'boolean' => array(
-				'rule' => array('boolean'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'created_user' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'modified_user' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-	);
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+class SearchBox extends SearchBoxesAppModel {
 
 /**
  * belongsTo associations
@@ -103,7 +54,47 @@ class SearchBox extends AppModel {
 	);
 
 /**
- * save search box
+ * Called during validation operations, before validation. Please note that custom
+ * validation rules can be defined in $validate.
+ *
+ * @param array $options Options passed from Model::save().
+ * @return bool True if validate operation should continue, false to abort
+ * @link http://book.cakephp.org/2.0/en/models/callback-methods.html#beforevalidate
+ * @see Model::save()
+ */
+	public function beforeValidate($options = array()) {
+		$this->validate = Hash::merge($this->validate, array(
+			'frame_key' => array(
+				'notEmpty' => array(
+					'rule' => array('notEmpty'),
+					'message' => __d('net_commons', 'Invalid request.'),
+				),
+			),
+			'is_advanced' => array(
+				'boolean' => array(
+					'rule' => array('boolean'),
+					'message' => __d('net_commons', 'Invalid request.'),
+				),
+			),
+			'created_user' => array(
+				'numeric' => array(
+					'rule' => array('numeric'),
+					'message' => __d('net_commons', 'Invalid request.'),
+				),
+			),
+			'modified_user' => array(
+				'numeric' => array(
+					'rule' => array('numeric'),
+					'message' => __d('net_commons', 'Invalid request.'),
+				),
+			),
+		));
+
+		return parent::beforeValidate($options);
+	}
+
+/**
+ * After frame save hook
  *
  * @param array $data received post data
  * @return mixed On success Model::$data if its not empty or true, false on failure
@@ -112,21 +103,20 @@ class SearchBox extends AppModel {
 	public function afterFrameSave($data) {
 		$this->loadModels([
 			'Topic' => 'Topics.Topic',
-			'SearchBox' => 'SearchBoxes.SearchBox',
 			'SearchBoxTargetPlugin' => 'SearchBoxes.SearchBoxTargetPlugin',
 		]);
 
 		try {
-			if (!$this->SearchBox->validateSearchBox([
+			$plugins = array_map(function ($plugin) {
+				return ['plugin_key' => $plugin];
+			}, Topic::$availablePlugins);
+			if (!$this->validateSearchBox([
 				'SearchBox' => ['frame_key' => $data['Frame']['key']],
-				'SearchBoxTargetPlugin' =>
-					array_map(function($plugin){ return ['plugin_key' => $plugin]; }, Topic::$AVAILABLE_PLUGINS),
+				'SearchBoxTargetPlugin' => $plugins,
 			])) {
-				$this->validationErrors = Hash::merge($this->validationErrors, $this->SearchBox->validationErrors);
 				return false;
 			}
-			/* if (!$this->SearchBox->save(null, false)) { */
-			if (!$this->SearchBox->saveAssociated(null, ['validate' => false, 'deep' => true])) {
+			if (!$this->saveAssociated(null, ['validate' => false, 'deep' => true])) {
 				throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
 			}
 		} catch (Exception $ex) {
@@ -134,7 +124,60 @@ class SearchBox extends AppModel {
 			throw $ex;
 		}
 
-		return $this->searchBox;
+		return $this;
+	}
+
+/**
+ * After frame save hook
+ *
+ * @param array $data received post data
+ * @return mixed On success Model::$data if its not empty or true, false on failure
+ * @throws InternalErrorException
+ */
+	public function saveSettings($data) {
+		$this->loadModels([
+			/* 'Topic' => 'Topics.Topic', */
+			'SearchBoxTargetPlugin' => 'SearchBoxes.SearchBoxTargetPlugin',
+		]);
+
+		$this->setDataSource('master');
+		$con = $this->getDataSource();
+		$con->begin();
+
+		try {
+			$plugins = array_map(function ($plugin) use ($data){
+				return [
+					'search_box_id' => $data['SearchBox']['id'],
+					'plugin_key' => $plugin,
+				];
+			}, isset($data['SearchBoxTargetPlugin']['plugin_key']) ? $data['SearchBoxTargetPlugin']['plugin_key'] : []);
+			if (!$this->validateSearchBox([
+				'SearchBox' => $data['SearchBox'],
+				'SearchBoxTargetPlugin' => $plugins,
+			])) {
+				return false;
+			}
+			if (!$this->SearchBoxTargetPlugin->validateSearchBoxTargetPlugin([
+				/* 'SearchBoxTargetPlugin' => $data['SearchBoxTargetPlugin'], */
+				'SearchBoxTargetPlugin' => $plugins,
+			])) {
+				$this->validationErrors = Hash::merge($this->validationErrors, $this->SearchBoxTargetPlugin->validationErrors);
+				return false;
+			}
+			if (!$this->SearchBoxTargetPlugin->deleteAll(['search_box_id' => $data['SearchBox']['id']], false)) {
+				throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
+			}
+			if (!$this->saveAssociated(null, ['validate' => false, 'deep' => true])) {
+				throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));
+			}
+			$con->commit();
+		} catch (Exception $ex) {
+			$con->rollback();
+			CakeLog::error($ex);
+			throw $ex;
+		}
+
+		return $this;
 	}
 
 /**

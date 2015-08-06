@@ -39,8 +39,17 @@ class SearchBoxFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => 1,
-			'frame_key' => 'Lorem ipsum dolor sit amet',
+			'frame_key' => 'frame_191',
 			'is_advanced' => 1,
+			'created_user' => 1,
+			'created' => '2015-05-20 07:28:05',
+			'modified_user' => 1,
+			'modified' => '2015-05-20 07:28:05'
+		),
+		array(
+			'id' => 2,
+			'frame_key' => 'frame_192',
+			'is_advanced' => 0,
 			'created_user' => 1,
 			'created' => '2015-05-20 07:28:05',
 			'modified_user' => 1,

@@ -1,0 +1,55 @@
+h2.header {
+    margin-top: 0px;
+}
+
+.plugins {
+    width: 8em;
+}
+
+.plugins > div.form-input {
+    width: 8em;
+}
+
+.search_boxes_topicTitle {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.search_boxes_navigation_header {
+    font-size: small;
+    margin-bottom: 10px;
+}
+
+.search_boxes_entry {
+    border-bottom: 1px solid #ccc;
+}
+
+.search_boxes_entry_title {
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.search_boxes_entry_meta {
+    font-size: small;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.search_boxes_entry_status {
+    text-align: right;
+    float:right;
+}
+
+.search_boxes_entry_body1 {
+    margin-bottom: 20px;
+}
+
+.search_boxes_entry_reaction {
+    margin-top: 20px;
+    font-size: small;
+    margin-bottom: 20px;
+}
+
+.search_boxes_entry_reaction div.pull-left{
+    margin-right: 10px;
+}
