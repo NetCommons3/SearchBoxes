@@ -43,6 +43,7 @@ class SearchBoxesController extends SearchBoxesAppController {
 		parent::beforeFilter();
 		$this->Auth->deny('index');
 		$this->initTabs('frame_settings');
+		ClassRegistry::flush();
 	}
 
 /**
@@ -83,12 +84,11 @@ class SearchBoxesController extends SearchBoxesAppController {
 		}
 
 		if ($this->request->is(array('post', 'put'))) {
-			if ($this->SearchBox->saveSettings($this->request->data)) {
-				$this->Session->setFlash(__('The search box has been saved.'));
-				return $this->redirectByFrameId();
-			} else {
-				$this->Session->setFlash(__('The search box could not be saved. Please, try again.'));
+			$this->SearchBox->saveSettings($this->request->data);
+			if (!$this->handleValidationError($this->SearchBox->validationErrors)) {
+				return;
 			}
+			return $this->redirectByFrameId();
 		}
 		$this->request->data = $searchBox;
 		$options = array('conditions' => array('language_id' => 2, 'key' => Topic::$availablePlugins));
