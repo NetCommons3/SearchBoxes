@@ -34,7 +34,7 @@
 			echo $this->Form->input('SearchBoxTargetPlugin.plugin_key', [
 				'label' => false,
 				'div' => false,
-				'class' => 'form-input',
+				'class' => 'form-input inline-block',
 				'multiple' => 'checkbox',
 				'options' => $plugins,
 				'value' => $checked,

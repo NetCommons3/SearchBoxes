@@ -56,15 +56,11 @@ class SearchBoxTargetPlugin extends SearchBoxesAppModel {
 				),
 			),
 			'plugin_key' => array(
-				'notEmpty' => array(
-					'rule' => array('notEmpty'),
+				'inList' => array(
+					'rule' => array('inList', Topic::$availablePlugins),
 					'message' => __d('net_commons', 'Invalid request.'),
-				),
-				/* 'inList' => array( */
-				/* 	'rule' => array('inList', Topic::$availablePlugins), */
-				/* 	'message' => __d('net_commons', 'Invalid request.'), */
-				/* 	'allowEmpty' => true, */
-				/* ) */
+					'allowEmpty' => true,
+				)
 			),
 			'created_user' => array(
 				'numeric' => array(

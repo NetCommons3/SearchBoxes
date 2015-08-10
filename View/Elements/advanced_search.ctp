@@ -33,6 +33,7 @@
 					'label' => false,
 					'empty' => __d('topics', 'Unspecified'),
 					'options' => $options,
+					'selected' => isset($this->request->query['room_id']) ? $this->request->query['room_id'] : null,
 					'class' => 'form-control',
 				]);
 			?>
@@ -49,7 +50,8 @@
 					'type' => 'select',
 					'label' => false,
 					'empty' => __d('topics', 'Unspecified'),
-					'options' => $options,
+					'options' => $blocks,
+					'selected' => isset($this->request->query['block_id']) ? $this->request->query['block_id'] : null,
 					'class' => 'form-control',
 				]);
 			?>
@@ -94,8 +96,12 @@
 			<?php
 				$checked = [];
 				if (isset($this->request->query['plugin_key'])) {
-					foreach ($this->request->query['plugin_key'] as $target) {
-						$checked[$target] = $target;
+					if (is_array($this->request->query['plugin_key'])) {
+						foreach ($this->request->query['plugin_key'] as $target) {
+							$checked[$target] = $target;
+						}
+					} else {
+						$checked[$this->request->query['plugin_key']] = $this->request->query['plugin_key'];
 					}
 				} else {
 					foreach ($searchBox['SearchBoxTargetPlugin'] as $target) {

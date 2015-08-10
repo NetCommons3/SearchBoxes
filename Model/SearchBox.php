@@ -157,12 +157,13 @@ class SearchBox extends SearchBoxesAppModel {
 			])) {
 				return false;
 			}
-			if (!$this->SearchBoxTargetPlugin->validateSearchBoxTargetPlugin([
-				/* 'SearchBoxTargetPlugin' => $data['SearchBoxTargetPlugin'], */
-				'SearchBoxTargetPlugin' => $plugins,
-			])) {
-				$this->validationErrors = Hash::merge($this->validationErrors, $this->SearchBoxTargetPlugin->validationErrors);
-				return false;
+			foreach ($plugins as $plugin) {
+				if (!$this->SearchBoxTargetPlugin->validateSearchBoxTargetPlugin([
+					'SearchBoxTargetPlugin' => $plugin,
+				])) {
+					$this->validationErrors = Hash::merge($this->validationErrors, $this->SearchBoxTargetPlugin->validationErrors);
+					return false;
+				}
 			}
 			if (!$this->SearchBoxTargetPlugin->deleteAll(['search_box_id' => $data['SearchBox']['id']], false)) {
 				throw new InternalErrorException(__d('net_commons', 'Internal Server Error'));

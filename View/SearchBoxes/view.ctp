@@ -1,5 +1,4 @@
 <?php echo $this->Html->css(
-	/* '/searchBoxes/css/search_boxes.css', */
 	'/topics/css/topics.css',
 	//	'/search_boxes/css/search_boxes.css',
 	array(
