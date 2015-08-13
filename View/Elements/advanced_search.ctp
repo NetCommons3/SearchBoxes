@@ -61,7 +61,6 @@
 		<div class="input-group">
 			<?php echo $this->Form->label(__d('search_boxes', 'Target Datetime')); ?>
 		</div>
-
 		<div class="input-group">
 			<div class="inline-block input-range">
 				<?php echo $this->Form->input('Block.from', array(
@@ -118,5 +117,10 @@
 				]);
 			?>
 		</div>
+	</div>
+	<div class="text-center">
+		<?php echo $this->Form->button(__d('topics', 'Search'), array(
+			'class' => 'btn btn-primary',
+		)); ?>
 	</div>
 <?php echo $this->Form->end() ?>

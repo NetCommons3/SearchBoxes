@@ -1,12 +1,28 @@
 <?php echo $this->Html->css(
-	'/topics/css/topics.css',
+//	'/topics/css/topics.css',
 	//	'/search_boxes/css/search_boxes.css',
 	array(
 		'plugin' => false,
 		'once' => true,
 		'inline' => false
 	)
-); ?>
+);
+?>
+<div style="">
+	 <div class="form-group">
+	         <div class="row">
+	             <div class="col-md-10">
+				<?php echo $this->Form->input('Block.from', array(
+					'type' => 'text',
+					'datetimepicker',
+					'label' => false,
+					'class' => 'form-control',
+					'placeholder' => 'yyyy-mm-dd hh:mm',
+				)); ?>
+	             </div>
+	         </div>
+	     </div>
+</div>
 <?php echo $this->Form->create('SearchBox',
 	array(
 		'type' => 'get',
