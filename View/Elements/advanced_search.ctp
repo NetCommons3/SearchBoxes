@@ -18,6 +18,7 @@
 			</span>
 		</div>
 	</div>
+	<?php if (!isset($this->request->query['hide_target_rooms'])): ?>
 	<div class="form-group">
 		<div class="input-group">
 			<?php echo $this->Form->label(__d('search_boxes', 'Target Room')); ?>
@@ -39,24 +40,7 @@
 			?>
 		</div>
 	</div>
-	<div class="form-group">
-		<div class="input-group">
-			<?php echo $this->Form->label(__d('search_boxes', 'Target Block')); ?>
-		</div>
-		<div class="input-group">
-			<?php
-				$options = [];
-				echo $this->Form->input('block_id', [
-					'type' => 'select',
-					'label' => false,
-					'empty' => __d('topics', 'Unspecified'),
-					'options' => $blocks,
-					'selected' => isset($this->request->query['block_id']) ? $this->request->query['block_id'] : null,
-					'class' => 'form-control',
-				]);
-			?>
-		</div>
-	</div>
+	<?php endif; ?>
 	<div class="form-group inline-block" >
 		<div class="input-group">
 			<?php echo $this->Form->label(__d('search_boxes', 'Target Datetime')); ?>
@@ -87,6 +71,7 @@
 			</div>
 		</div>
 	</div>
+	<?php if (!isset($this->request->query['hide_target_plugins'])): ?>
 	<div class="form-group">
 		<div class="input-group">
 			<?php echo $this->Form->label(__d('search_boxes', 'Target Plugins')); ?>
@@ -118,6 +103,7 @@
 			?>
 		</div>
 	</div>
+	<?php endif; ?>
 	<div class="text-center">
 		<?php echo $this->Form->button(__d('topics', 'Search'), array(
 			'class' => 'btn btn-primary',
