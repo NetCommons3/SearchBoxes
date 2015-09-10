@@ -30,7 +30,7 @@
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $searchBox['SearchBox']['id']), null, __('Are you sure you want to delete # %s?', $searchBox['SearchBox']['id'])); ?>
 		</td>
 	</tr>
-<?php endforeach; ?>
+	<?php endforeach; ?>
 	</table>
 	<p>
 	<?php

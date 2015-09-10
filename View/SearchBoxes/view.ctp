@@ -19,4 +19,4 @@
 	<?php echo $this->element('SearchBoxes.general_search') ?>
 	</div>
 	<?php endif; ?>
-<?php echo $this->Form->end() ?>
+<?php echo $this->Form->end();

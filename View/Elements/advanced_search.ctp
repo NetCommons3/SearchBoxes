@@ -109,4 +109,4 @@
 			'class' => 'btn btn-primary',
 		)); ?>
 	</div>
-<?php echo $this->Form->end() ?>
+<?php echo $this->Form->end();

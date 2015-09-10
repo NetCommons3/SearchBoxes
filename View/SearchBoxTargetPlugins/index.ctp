@@ -32,7 +32,7 @@
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $searchBoxTargetPlugin['SearchBoxTargetPlugin']['id']), null, __('Are you sure you want to delete # %s?', $searchBoxTargetPlugin['SearchBoxTargetPlugin']['id'])); ?>
 		</td>
 	</tr>
-<?php endforeach; ?>
+	<?php endforeach; ?>
 	</table>
 	<p>
 	<?php

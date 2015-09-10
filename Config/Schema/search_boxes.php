@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Schema file
  *
@@ -12,12 +12,17 @@
  * Schema file
  *
  * @author Jun Nishikawa <topaz2@m0n0m0n0.com>
- * @package NetCommons\Topics\Config\Schema
+ * @package NetCommons\SearchBoxes\Config\Schema
  * @SuppressWarnings(PHPMD.LongVariable)
  * @SuppressWarnings(PHPMD.TooManyFields)
  */
 class SearchBoxSchema extends CakeSchema {
 
+/**
+ * Database connection
+ *
+ * @var string
+ */
 	public $connection = 'master';
 
 /**
@@ -60,6 +65,11 @@ class SearchBoxSchema extends CakeSchema {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
 
+/**
+ * search_boxes table
+ *
+ * @var array
+ */
 	public $search_boxes = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'key' => 'primary'),
 		'frame_key' => array('type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
