@@ -72,37 +72,39 @@
 		</div>
 	</div>
 	<?php if (!isset($this->request->query['hide_target_plugins'])): ?>
-	<div class="form-group">
-		<div class="input-group">
-			<?php echo $this->Form->label(__d('search_boxes', 'Target Plugins')); ?>
-		</div>
-		<div class="input-group plugins">
-			<?php
-				$checked = [];
-				if (isset($this->request->query['plugin_key'])) {
-					if (is_array($this->request->query['plugin_key'])) {
-						foreach ($this->request->query['plugin_key'] as $target) {
-							$checked[$target] = $target;
+		<div class="form-group">
+			<div class="input-group">
+				<?php echo $this->Form->label(__d('search_boxes', 'Target Plugins')); ?>
+			</div>
+			<div class="input-group plugins">
+				<?php $checked = []; ?>
+				<?php if (isset($this->request->query['plugin_key'])) : ?>
+					<?php if (is_array($this->request->query['plugin_key'])) : ?>
+						<?php
+							foreach ($this->request->query['plugin_key'] as $target) {
+								$checked[$target] = $target;
+							}
+						?>
+					<?php else : ?>
+							$checked[$this->request->query['plugin_key']] = $this->request->query['plugin_key'];
+					<?php endif; ?>
+				<?php else : ?>
+					<?php
+						foreach ($searchBox['SearchBoxTargetPlugin'] as $target) {
+							$checked[$target['plugin_key']] = $target['plugin_key'];
 						}
-					} else {
-						$checked[$this->request->query['plugin_key']] = $this->request->query['plugin_key'];
-					}
-				} else {
-					foreach ($searchBox['SearchBoxTargetPlugin'] as $target) {
-						$checked[$target['plugin_key']] = $target['plugin_key'];
-					}
-				}
-				echo $this->Form->input('SearchBoxTargetPlugin.plugin_key', [
-					'label' => false,
-					'div' => false,
-					'class' => 'form-input inline-block',
-					'multiple' => 'checkbox',
-					'options' => $plugins,
-					'value' => $checked,
-				]);
-			?>
+					?>
+				<?php endif; ?>
+				<?php echo $this->Form->input('SearchBoxTargetPlugin.plugin_key', [
+						'label' => false,
+						'div' => false,
+						'class' => 'form-input inline-block',
+						'multiple' => 'checkbox',
+						'options' => $plugins,
+						'value' => $checked,
+					]); ?>
+			</div>
 		</div>
-	</div>
 	<?php endif; ?>
 	<div class="text-center">
 		<?php echo $this->Form->button(__d('topics', 'Search'), array(

@@ -13,10 +13,10 @@
 		'url' => '/topics/topics/search/' . $frameId,
 		)) ?>
 	<?php if ($searchBox['SearchBox']['is_advanced']): ?>
-	<?php echo $this->element('SearchBoxes.advanced_search') ?>
+		<?php echo $this->element('SearchBoxes.advanced_search') ?>
 	<?php else: ?>
-	<div class="search-box-view">
-	<?php echo $this->element('SearchBoxes.general_search') ?>
-	</div>
+		<div class="search-box-view">
+			<?php echo $this->element('SearchBoxes.general_search') ?>
+		</div>
 	<?php endif; ?>
 <?php echo $this->Form->end();

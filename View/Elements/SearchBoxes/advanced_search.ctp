@@ -85,11 +85,11 @@
 				</span>
 
 				<?php echo $this->Form->time('Block.to', array(
-					/* 'value' => (isset($block['to']) ? $block['to'] : null), */
-					'label' => false,
-					'class' => 'form-control',
-					'placeholder' => 'yyyy-mm-dd hh:nn'
-				)); ?>
+						/* 'value' => (isset($block['to']) ? $block['to'] : null), */
+						'label' => false,
+						'class' => 'form-control',
+						'placeholder' => 'yyyy-mm-dd hh:nn'
+					)); ?>
 			</div>
 		</div>
 		//-->
