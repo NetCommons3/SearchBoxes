@@ -157,7 +157,6 @@ class SearchBoxTest extends SearchBoxAppModelTest {
 				],
 			],
 		]);
-		var_dump($this->SearchBox->validationErrors);
 	}
 
 /**
